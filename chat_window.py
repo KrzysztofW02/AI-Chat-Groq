@@ -7,12 +7,14 @@ from PyQt5.QtWidgets import (
     QComboBox
 )
 from PyQt5.QtCore import Qt
+from PyQt5 import QtGui
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("AI Chat App")
         self.setGeometry(100, 100, 600, 600)
+        self.setWindowIcon(QtGui.QIcon("icon.ico"))
 
         self.central_widget = QWidget(self)
         self.setCentralWidget(self.central_widget)
@@ -34,11 +36,11 @@ class MainWindow(QMainWindow):
         self.model_selector.addItems(["llama3-8b-8192", "llama3-70b-8192", "gemma2-9b-it"]) 
         self.left_layout.addWidget(self.model_selector)
 
-        self.content_label = QLabel("Input Content:", self)
+        self.content_label = QLabel("Content:", self)
         self.left_layout.addWidget(self.content_label)
 
         self.content_input = QTextEdit(self)
-        self.content_input.setPlaceholderText("Enter content here...")
+        self.content_input.setPlaceholderText("You can set content for chat e.g. 'You are a Python programming assistant. Offer support with syntax, best practices, and resolving issues in Python code.'")
         self.content_input.setMinimumSize(200, 200)  
         self.left_layout.addWidget(self.content_input)
 
